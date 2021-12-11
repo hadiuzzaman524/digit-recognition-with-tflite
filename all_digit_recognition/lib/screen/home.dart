@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Offset> points=[];
+  List<Offset?> points=[];
   final pointMode= ui.PointMode.points;
   int digit=-1;
 
@@ -41,11 +41,10 @@ class _HomePageState extends State<HomePage> {
 
                   ),
                   child: GestureDetector(
-
                     onPanUpdate: (DragUpdateDetails details){
                       Offset _location= details.localPosition;
-                      if(_location.dx>=0 && _location.dx<=400 &&
-                      _location.dy>=0 && _location.dy<=400){
+                      if(_location.dx>=0 && _location.dx<=372 &&
+                      _location.dy>=0 && _location.dy<=372){
                         setState(() {
                           points.add(_location);
                         });
@@ -57,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                     onPanEnd: (DragEndDetails details){
                      // List.from(line.path)..add(null);
                       // digit= // call classifier
-
+                      points.add(null);
                       setState(() {
                       });
                     },
@@ -93,20 +92,20 @@ class _HomePageState extends State<HomePage> {
 
 class Painter extends CustomPainter {
 
-  final List<Offset> points;
+  final List<Offset?> points;
   Painter({required this.points});
 
   final Paint _paintDetails = Paint()
     ..style = PaintingStyle.stroke
-    ..strokeWidth = 8.0 // strokeWidth 4 looks good, but strokeWidth approx. 16 looks closer to training data
+    ..strokeWidth = 5.0 // strokeWidth 4 looks good, but strokeWidth approx. 16 looks closer to training data
     ..color = Colors.white;
 
   @override
   void paint(Canvas canvas, Size size) {
     for (int i = 0; i < points.length - 1; i++) {
-     // if (points[i] != null && points[i + 1] != null) {
-        canvas.drawLine(points[i], points[i + 1], _paintDetails);
-     // }
+      if (points[i] != null && points[i + 1] != null) {
+        canvas.drawLine(points[i] as Offset, points[i + 1] as Offset, _paintDetails);
+      }
     }
   }
 
