@@ -4,6 +4,7 @@ import 'package:all_digit_recognition/model/classifier.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+import 'package:flutter_tts/flutter_tts.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   List<Offset?> points = [];
   final pointMode = ui.PointMode.points;
   int? digit = -1;
+   FlutterTts flutterTts= FlutterTts();
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   onPanEnd: (DragEndDetails details) async {
                     digit = await Classifier().classifyDrawing(points);
+                    flutterTts.speak("$digit");
                     points.add(null);
                     setState(() {});
                   },
