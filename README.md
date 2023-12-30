@@ -1,7 +1,8 @@
-# Digit-Recognition-with-tflite
+# Digit-Recognition
+
 ## Introduction:
 
-For building an Android app I used the Flutter framework which was built by Google. To implement the deep learning method use the flutter-tflite package, converting text to voice I used the flutter-tts package. To record the handwritten I used GestureDetector class and CustomPaint class. We take input from the touch-screen and convert it to an image then show the result using a previously built model.
+To construct the Android application, I harnessed the power of the Flutter framework, a versatile toolkit developed by Google. Employing the Flutter-tflite package facilitated the integration of a deep learning methodology, enabling seamless incorporation of machine learning models. For text-to-voice functionality, I leveraged the Flutter-tts package, enriching the user experience with voice-based interactions. The implementation of handwriting recognition involved the adept use of the GestureDetector class and CustomPaint class. Through these components, user input from the touch-screen is converted into an image, subsequently processed by a pre-existing model, and the results are visually presented to the user.
 
 # Home Screen
 <p float="left">
